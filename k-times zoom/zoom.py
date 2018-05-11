@@ -59,15 +59,15 @@ new_image2=[[[0,0,0] for n in range(len(image[0])*scale)] for n in range(len(ima
 #row wise zooming
 for j in range(len(new_image[0])):
 	for i in range(len(new_image)):
-		r_new = int(abs(new_image[i][j][0] - new_image[++i][j][0])/scale)
+		b_new = int(abs(new_image[i][j][0] - new_image[++i][j][0])/scale)
 		g_new = int(abs(new_image[i][j][1] - new_image[++i][j][1])/scale)
-		b_new = int(abs(new_image[i][j][2] - new_image[++i][j][2])/scale)
+		r_new = int(abs(new_image[i][j][2] - new_image[++i][j][2])/scale)
 		#new_image.append([])
 		#new_image.insert([i][j],image[i][j])
 		i = i-3
 		new_image2[i*scale][j] = new_image[i][j]
 		for k in range(scale-1):
-			new_image2[i*scale + k+1][j] = [new_image2[i*scale +k][j][0] + r_new,new_image2[i*scale + k][j][1] + g_new,new_image2[i*scale + k][j][2] + b_new]
+			new_image2[i*scale + k+1][j] = [new_image2[i*scale +k][j][0] + b_new,new_image2[i*scale + k][j][1] + g_new,new_image2[i*scale + k][j][2] + r_new]
 
 zoomed_image = new_image2[ul_x:lr_x+1][ul_y:lr_y+1]
 
