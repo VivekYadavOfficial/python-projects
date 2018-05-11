@@ -39,7 +39,7 @@ if (lr_y > len(image)):
 lr_y = len(image)
 
 #allocating image list for storing 
-new_image=[[[0,0,0] for m in range(1400*scale)] for m in range(1050)]
+new_image=[[[0,0,0] for m in range(len(image[0])*scale)] for m in range(len(image))]
 
 #column wise zooming
 for i in range(len(image)):
@@ -54,7 +54,7 @@ for i in range(len(image)):
 		for k in range(scale-1):
 			new_image[i][j*scale + k+1] = [new_image[i][j*scale + k][0] + b_new,new_image[i][j*scale + k][1] + g_new,new_image[i][j*scale + k][2] + r_new]
 
-new_image2=[[[0,0,0] for n in range(1400*scale)] for n in range(1050*scale)]
+new_image2=[[[0,0,0] for n in range(len(image[0])*scale)] for n in range(len(image)*scale)]
 
 #row wise zooming
 for j in range(len(new_image[0])):
@@ -71,4 +71,4 @@ for j in range(len(new_image[0])):
 
 zoomed_image = new_image2[ul_x:lr_x+1][ul_y:lr_y+1]
 
-cv2.imwrite("zoomed_image5.png", np.array(zoomed_image, dtype="uint8"))
+cv2.imwrite("zoomed_image.png", np.array(zoomed_image, dtype="uint8"))
