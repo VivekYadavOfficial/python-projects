@@ -4,6 +4,7 @@ import cv2
 import argparse
 import numpy as np
 
+#read and process the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", help="Path to input image", required=True)
 ap.add_argument("-p", "--pivot-point", help="Pivot point coordinates x, y separated by comma (,)", required=True)
@@ -16,6 +17,7 @@ scale = args["scale"]
 image = cv2.imread(image_path)
 image = image.tolist()
 
+#calculate coordinates for the window on final image
 new_x = x*scale
 new_y = y*scale
 
@@ -25,7 +27,7 @@ ul_y = new_y - y
 lr_x = new_x + (len(image) - x)
 lr_y = new_y + (len(image[0]) - y)
 
-#allocating image list for storing 
+#allocating image list
 new_image=[[[0,0,0] for m in range(len(image[0])*scale)] for m in range(len(image))]
 
 #column wise zooming
@@ -59,4 +61,5 @@ for j in range(len(new_image[0])):
 zoomed_image = [[[0,0,0] for n in range(len(image[0]))] for n in range(len(image))]
 zoomed_image = [new_image2[i][ul_y:lr_y] for i in range(ul_x,lr_x)]
 
+#writing image
 cv2.imwrite("zoomed_image.png", np.array(zoomed_image, dtype="uint8"))
