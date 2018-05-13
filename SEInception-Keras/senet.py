@@ -1,3 +1,4 @@
+#vivekyadavofficial
 #import required modules
 from keras.layers import GlobalAveragePooling2D, Input, Conv2D, MaxPooling2D, multiply, Flatten, Dense, concatenate
 from keras.models import Model
@@ -65,7 +66,7 @@ lrate = 0.01
 decay = lrate/epochs
 sgd = SGD(lr=lrate, momentum=0.9, decay=decay, nesterov=False)
 
-model.compile(loss='categorical_crossentropy', optimizer=adm, metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
 model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=epochs, batch_size=32)
 
